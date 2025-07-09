@@ -1,15 +1,13 @@
 import './App.css'
+import ReactCoreEssentials from './components/ReactCoreEssentials';
 
 function App() {
 
   return (
     <>
-      <div>
-        <h1>Hello react</h1>
-      </div>
-      
+      <ReactCoreEssentials />
     </>
-  )
+  );
 }
 
 export default App
