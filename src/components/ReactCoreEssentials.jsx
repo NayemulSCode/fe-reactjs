@@ -1,18 +1,50 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import ExampleOfUseState from "./ExampleOfUseState";
 import Greeting from "./Greeting"; // Greeting কম্পোনেন্ট ইম্পোর্ট
 
 const ReactCoreEssentials = () => {
   const [count, setCount] = useState(0);
-
+  const [user, setUser] = useState({ name: "", city: "", age: 0 });
+  console.log("🚀 ~ ReactCoreEssentials ~ user:", user);
   // Event handlers
   const incrementCount = () => {
+    // 1st case
+    // setCount(count + 1);
+    // setCount(count + 1);
+    // setCount(count + 1);
+    // setCount(count + 1);
+    // case 2
+    setCount((prevCount) => prevCount + 1);
+    setCount((prevCount) => prevCount + 1);
+    setCount((prevCount) => prevCount + 1);
     setCount((prevCount) => prevCount + 1);
   };
 
   const decrementCount = () => {
     setCount((prevCount) => prevCount - 1);
   };
+  // user State management from parent
+  const handleUser = (e) => {
+    // method 1
+    // setUser({
+    //   ...user, //using spreed operator copy all other object property
+    //   // name: e.target.value, //set value only name property
+    //   [e.target.name]: e.target.value, //set value in dynamically in the property
+    // });
 
+    // mehod 2
+    // setUser((prev) => {
+    //   return {
+    //     ...prev,
+    //     [e.target.name]: e.target.value,
+    //   };
+    // });
+    // method 3
+    setUser((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
   return (
     <div className="p-6 bg-slate-100 min-h-screen">
       <header className="mb-8 text-center">
@@ -79,7 +111,22 @@ const ReactCoreEssentials = () => {
             </div>
           </div>
         </section>
-
+        <section className="bg-white p-6 rounded-lg shadow-md">
+          <h2 className="text-2xl font-semibold text-sky-600 mb-3">
+            useState & Event Handling
+          </h2>
+          <p className="text-slate-700 mb-2">
+            <code>useState</code> স্টেট ম্যানেজ করে। ইভেন্ট হ্যান্ডলিং
+            ব্যবহারকারী ইন্টারঅ্যাকশন (যেমন বাটন ক্লিক) পরিচালনা করে এবং স্টেট
+            আপডেট করে।
+          </p>
+          <p className="text-lg font-medium text-slate-700 mb-3">
+            কাউন্টার:{" "}
+            <span className="font-bold text-sky-600">{user.name}</span>
+          </p>
+          {/* <ExampleOfUseState user={user} setUser={setUser} /> */}
+          <ExampleOfUseState handleUser={handleUser} />
+        </section>
         {/* Props Section */}
         <section className="bg-white p-6 rounded-lg shadow-md">
           <h2 className="text-2xl font-semibold text-sky-600 mb-3">
